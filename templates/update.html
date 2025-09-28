@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Beitrag bearbeiten – My Flask Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header style="text-align:center;">
+  <h1>update your post (ID: {{ post.id }})</h1>
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+  </nav>
+</header>
+
+<main>
+  <form method="POST" action="{{ url_for('update', post_id=post.id) }}">
+    <label for="author">Author</label><br>
+    <input id="author" name="author" type="text" value="{{ post.author }}" required><br><br>
+
+    <label for="title">Title</label><br>
+    <input id="title" name="title" type="text" value="{{ post.title }}" required><br><br>
+
+    <label for="content">Content</label><br>
+    <textarea id="content" name="content" rows="6" required>{{ post.content }}</textarea><br><br>
+
+    <button type="submit">safe</button>
+  </form>
+</main>
+</body>
+</html>

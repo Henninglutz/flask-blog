@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>My Flask Blog – Start</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header style="text-align:center;">
+  <h1><strong>Flask Blog</strong></h1>
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('add') }}">new post</a>
+  </nav>
+</header>
+
+<main>
+  <h2>all posts</h2>
+
+  {% if posts %}
+    <ul class="post-list">
+      {% for p in posts %}
+        <li class="post">
+          <h3>{{ p.title }}</h3>
+          <p class="meta">von {{ p.author }} – ID: {{ p.id }}</p>
+          <p>{{ p.content }}</p>
+          <div class="actions">
+            <a href="{{ url_for('update', post_id=p.id) }}">update</a>
+            <a href="{{ url_for('delete', post_id=p.id) }}">delete</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>empty post list.</p>
+  {% endif %}
+</main>
+</body>
+</html>
